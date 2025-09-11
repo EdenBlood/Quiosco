@@ -1,8 +1,10 @@
+import { Product } from "@/app/generated/prisma";
 import ProductCard from "@/components/products/ProductCard";
+import HeadingTitle from "@/components/ui/HeadingTitle";
 import { prisma } from "@/src/lib/prisma";
 
 async function getProducts(category: string) {
-  const products = await prisma.product.findMany({
+  const products: Product[] = await prisma.product.findMany({
     where: {
       category: {
         slug: category,
@@ -20,12 +22,11 @@ type OrderPageProps = {
 };
 
 export default async function OrderPage({ params }: OrderPageProps) {
-  const products = await getProducts(params.category);
+  const { category } = await params; // Hay que esperar a los parámetros.
+  const products = await getProducts(category);
   return (
     <>
-      <h1 className="text-2xl font-bold">
-        Elige y personaliza tu pedido a continuación
-      </h1>
+      <HeadingTitle>Elige y personaliza tu pedido a continuación</HeadingTitle>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 items-start gap-4">
         {products.map((product) => (

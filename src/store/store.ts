@@ -8,6 +8,7 @@ interface Store {
   increaseQuantity: (id: Product["id"]) => void;
   decreaseQuantity: (id: Product["id"]) => void;
   removeOrderItem: (id: Product["id"]) => void;
+  clearOrder: () => void;
 }
 
 export const useStore = create<Store>((set, get) => ({
@@ -21,8 +22,8 @@ export const useStore = create<Store>((set, get) => ({
         item.id === data.id
           ? {
               ...item,
-              quantity: item.quantity + 1,
-              subtotal: (item.quantity + 1) * item.price,
+              quantity: ++item.quantity,
+              subtotal: item.price * item.quantity,
             }
           : item
       );
@@ -47,38 +48,34 @@ export const useStore = create<Store>((set, get) => ({
         item.id === id
           ? {
               ...item,
-              quantity: item.quantity + 1,
-              subtotal: (item.quantity + 1) * item.price,
+              quantity: ++item.quantity,
+              subtotal: item.price * item.quantity,
             }
           : item
       ),
     }));
   },
   decreaseQuantity: (id) => {
-    const item: OrderItem = get().order.find((item) => item.id === id)!;
-
-    let items: OrderItem[] = [];
-    if (item.quantity > 1) {
-      items = get().order.map((orderItem) =>
-        orderItem.id === item.id
+    set((state) => ({
+      order: state.order.map((item) =>
+        item.id === id
           ? {
-              ...orderItem,
-              quantity: orderItem.quantity - 1,
-              subtotal: orderItem.price * (orderItem.quantity - 1),
+              ...item,
+              quantity: --item.quantity,
+              subtotal: item.price * item.quantity,
             }
-          : orderItem
-      );
-    } else {
-      items = get().order.filter((orderItem) => orderItem.id !== item.id);
-    }
-
-    set(() => ({
-      order: items,
+          : item
+      ),
     }));
   },
   removeOrderItem: (id) => {
     set((state) => ({
       order: state.order.filter((item) => item.id !== id),
+    }));
+  },
+  clearOrder: () => {
+    set(() => ({
+      order: [],
     }));
   },
 }));
