@@ -71,7 +71,7 @@ export default function ProductTable({ products }: ProductTableProps) {
                           <td className="relative py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pl-0">
                             <Link
                               href={`/admin/products/${product.id}/edit`}
-                              className="text-indigo-600 transition-colors duration-300 hover:text-indigo-800"
+                              className="font-bold text-indigo-600 transition-colors duration-300 hover:text-indigo-800"
                             >
                               Editar
                               <span className="sr-only">, {product.name}</span>
