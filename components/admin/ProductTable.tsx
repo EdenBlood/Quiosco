@@ -20,30 +20,35 @@ export default function ProductTable({ products }: ProductTableProps) {
             <div className="lg:lx-8 inline-block min-w-full bg-white p-5 py-2 align-middle sm:px-6">
               <table className="min-w-full divide-y divide-gray-300">
                 <thead>
-                  <th
-                    scope="col"
-                    className="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-0"
-                  >
-                    Producto
-                  </th>
+                  <tr>
+                    <th
+                      scope="col"
+                      className="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                    >
+                      Producto
+                    </th>
 
-                  <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                  >
-                    Precio
-                  </th>
+                    <th
+                      scope="col"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      Precio
+                    </th>
 
-                  <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                  >
-                    Categoría
-                  </th>
+                    <th
+                      scope="col"
+                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      Categoría
+                    </th>
 
-                  <th scope="col" className="relative py-3.5 pr-4 pl-3 sm:pr-0">
-                    <span className="sr-only">Acciones</span>
-                  </th>
+                    <th
+                      scope="col"
+                      className="relative py-3.5 pr-4 pl-3 sm:pr-0"
+                    >
+                      <span className="sr-only">Acciones</span>
+                    </th>
+                  </tr>
                 </thead>
 
                 <tbody className="divide-y divide-gray-200">
