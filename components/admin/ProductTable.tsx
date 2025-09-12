@@ -73,8 +73,8 @@ export default function ProductTable({ products }: ProductTableProps) {
                               href={`/admin/products/${product.id}/edit`}
                               className="text-indigo-600 transition-colors duration-300 hover:text-indigo-800"
                             >
-                              <span className="sr-only">Editar</span>,{" "}
-                              {product.name}
+                              Editar
+                              <span className="sr-only">, {product.name}</span>
                             </Link>
                           </td>
                         </tr>
