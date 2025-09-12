@@ -10,6 +10,13 @@ export const orderSchema = z.object({
       price: z.number(),
       quantity: z.number(),
       subtotal: z.number(),
-    })
+    }),
   ),
+});
+
+export const orderIdSchema = z.object({
+  orderId: z
+    .string()
+    .transform((value) => parseInt(value))
+    .refine((value) => value >= 0, { message: "Hay un error en el id" }),
 });
