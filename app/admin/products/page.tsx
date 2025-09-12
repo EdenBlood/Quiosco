@@ -1,7 +1,9 @@
+import ProductSearchForm from "@/components/admin/ProductSearchForm";
 import ProductsPagination from "@/components/admin/ProductsPagination";
 import ProductTable from "@/components/admin/ProductTable";
 import HeadingTitle from "@/components/ui/HeadingTitle";
 import { prisma } from "@/src/lib/prisma";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 //* Obtenemos los productos
@@ -56,6 +58,17 @@ export default async function ProductsPage({
   return (
     <>
       <HeadingTitle>Administrar Productos</HeadingTitle>
+
+      <div className="flex flex-col gap-5 lg:flex-row lg:justify-between">
+        <Link
+          href="/admin/products/new"
+          className="w-full cursor-pointer bg-amber-400 px-10 py-3 text-center text-xl font-bold transition-colors duration-300 hover:bg-amber-600 lg:w-auto"
+        >
+          Crear Producto
+        </Link>
+
+        <ProductSearchForm />
+      </div>
 
       <ProductTable products={products} />
 
