@@ -1,6 +1,7 @@
 import completeOrder from "@/actions/complete-order-action";
 import { OrderWithProducts } from "@/src/types/index.types";
 import { formatCurrency } from "@/src/utils";
+import ButtonSubmit from "../admin/ButtonSubmit";
 
 type OrderCardProps = {
   order: OrderWithProducts;
@@ -66,10 +67,9 @@ export default function OrderCard({ order }: OrderCardProps) {
 
           <input type="hidden" value={order.id} name="order_id" />
 
-          <input
-            className="mt-5 w-full bg-indigo-600 p-3 font-bold text-white uppercase not-disabled:cursor-pointer not-disabled:hover:bg-indigo-800"
-            type="submit"
-            value="Marcar Order Completada"
+          <ButtonSubmit
+            values={["Marcar Order Completada", "Completando..."]}
+            className="mt-5"
           />
         </div>
       </form>

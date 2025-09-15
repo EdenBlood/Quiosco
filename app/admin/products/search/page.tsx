@@ -1,5 +1,6 @@
 import ProductSearchForm from "@/components/admin/ProductSearchForm";
 import ProductTable from "@/components/admin/ProductTable";
+import GoBackButton from "@/components/ui/GoBackButton";
 import HeadingTitle from "@/components/ui/HeadingTitle";
 import { prisma } from "@/src/lib/prisma";
 import Link from "next/link";
@@ -47,12 +48,7 @@ export default async function SearchPage({
         <ProductSearchForm />
       </div>
 
-        <Link 
-          href={"/admin/products?page=1"}
-          className="inline-block mt-4 text-blue-400 hover:text-blue-600 text-sm transition-colors duration-300"
-        >
-          ⬅ Volver a todos los productos
-        </Link>
+      <GoBackButton />
 
       {products.length ? (
         <ProductTable products={products} />
