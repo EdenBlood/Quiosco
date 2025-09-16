@@ -35,20 +35,20 @@ export default async function ProductForm({ product }: ProductFormProps) {
       <div className="space-y-2">
         <label htmlFor="categoryId" className="text-slate-800">
           Categoría
-          <select
-            name="categoryId"
-            id="categoryId"
-            className="block w-full bg-slate-100 p-3"
-            defaultValue={product && product.categoryId}
-          >
-            <option value="">-- Seleccione ---</option>
-            {categories.map(({ id, slug }) => (
-              <option key={id} value={id}>
-                {slug}
-              </option>
-            ))}
-          </select>
         </label>
+        <select
+          name="categoryId"
+          id="categoryId"
+          className="block w-full bg-slate-100 p-3"
+          defaultValue={product && product.categoryId}
+        >
+          <option value="">-- Seleccione ---</option>
+          {categories.map(({ id, slug }) => (
+            <option key={id} value={id}>
+              {slug}
+            </option>
+          ))}
+        </select>
       </div>
 
       <ImageUpload />

@@ -1,5 +1,5 @@
 "use client";
-import { ProductFormDataSchema } from "@/src/schema";
+import { ProductFormInputSchema } from "@/src/schema";
 import ButtonSubmit from "./ButtonSubmit";
 import { toast } from "react-toastify";
 import { createProduct } from "@/actions/create-product-action";
@@ -20,7 +20,7 @@ export default function AddProductForm({
       image: formData.get("image"),
     };
 
-    const result = ProductFormDataSchema.safeParse(data);
+    const result = ProductFormInputSchema.safeParse(data);
 
     if (!result.success) {
       result.error.issues.forEach((issue) => toast.error(issue.message));
@@ -44,7 +44,7 @@ export default function AddProductForm({
         {children}
 
         <ButtonSubmit
-          values={["Craer Producto", "Creando..."]}
+          values={["Crear Producto", "Creando..."]}
           className="mt-5"
         />
       </form>

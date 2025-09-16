@@ -13,7 +13,7 @@ export default function ButtonSubmit({
     <input
       className={`${className} w-full bg-indigo-600 p-3 font-bold text-white uppercase not-disabled:cursor-pointer not-disabled:hover:bg-indigo-800`}
       type="submit"
-      value={disabled ? values[1] : values[0]}
+      value={disabled === true ? values[1] : values[0]}
       disabled={disabled}
     />
   );

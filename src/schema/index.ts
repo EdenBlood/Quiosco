@@ -28,20 +28,22 @@ export const SearchSchema = z.object({
     .min(1, { message: "La busqueda no puede ir vacía" }),
 });
 
-export const ProductFormDataSchema = z.object({
+export const ProductFormInputSchema = z.object({
   name: z
     .string()
-    .trim()
     .min(1, { message: "El nombre del producto no puede ir vació" }),
   price: z
     .string()
-    .trim()
-    .transform((value) => parseFloat(value))
-    .refine((value) => value > 0, { message: "El precio debe ser mayor a 0" }),
+    .min(1, { message: "El precio del producto no puede ir vació" }),
   categoryId: z
     .string()
-    .trim()
-    .transform((value) => parseInt(value))
-    .refine((value) => value > 0, { message: "La categoría es obligatoria" }),
-  image: z.string().min(1, { message: "La imagen es obligatoria" }),
+    .min(1, { message: "La categoría del producto no puede ir vació" }),
+  image: z.string().min(1, { message: "El producto no puede no tener imagen" }),
 });
+
+export const ProductSchema = ProductFormInputSchema.transform((data) => ({
+  name: data.name.trim(),
+  price: parseFloat(data.price),
+  categoryId: parseInt(data.categoryId, 10),
+  image: data.image,
+}));
