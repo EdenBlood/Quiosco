@@ -12,7 +12,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <>
       <article className="flex h-full flex-col border bg-white">
-        <div className="relative h-80 w-full">
+        <div className="relative h-76 w-full">
           <Image
             className="h-full w-full object-cover object-center"
             src={imagePath}
@@ -21,7 +21,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
         </div>
 
-        <div className="flex h-56 w-full flex-col justify-between p-5">
+        <div className="flex min-h-68 w-full flex-col justify-between p-5">
           <h3 className="text-2xl font-bold">{product.name}</h3>
 
           <div className="space-y-4">

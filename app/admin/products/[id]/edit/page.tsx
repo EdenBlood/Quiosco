@@ -3,7 +3,6 @@ import ProductForm from "@/components/admin/ProductForm";
 import GoBackButton from "@/components/ui/GoBackButton";
 import HeadingTitle from "@/components/ui/HeadingTitle";
 import { prisma } from "@/src/lib/prisma";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 async function getProductById(id: number) {

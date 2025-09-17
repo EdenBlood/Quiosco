@@ -1,13 +1,48 @@
-import completeOrder from "@/actions/complete-order-action";
+"use client";
 import { OrderWithProducts } from "@/src/types/index.types";
 import { formatCurrency } from "@/src/utils";
 import ButtonSubmit from "../admin/ButtonSubmit";
+import { orderIdSchema } from "@/src/schema";
+import { toast } from "react-toastify";
+import { mutate } from "swr";
 
 type OrderCardProps = {
   order: OrderWithProducts;
 };
 
 export default function OrderCard({ order }: OrderCardProps) {
+  const handleCompleteOrder = async (formData: FormData) => {
+    const data = {
+      orderId: formData.get("orderId")!,
+    };
+
+    const result = orderIdSchema.safeParse(data);
+
+    if (!result.success) {
+      toast.error("Error al completar la orden");
+      return;
+    }
+
+    const url = "/api/admin/orders";
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const json = await response.json();
+    if (!response.ok) {
+      toast.error(json.error || "Error en el servidor");
+      return;
+    }
+
+    toast.success(json.success);
+
+    mutate("/api/admin/orders");
+  };
+
   return (
     <section
       aria-labelledby="summary-heading"
@@ -25,7 +60,7 @@ export default function OrderCard({ order }: OrderCardProps) {
 
       <form
         className="flex h-full flex-col justify-between"
-        action={completeOrder}
+        action={handleCompleteOrder}
       >
         <div className="mt-4">
           {order.orderProducts.map((product) => (
@@ -65,7 +100,7 @@ export default function OrderCard({ order }: OrderCardProps) {
             <dd className="text-base font-medium text-gray-900">{}</dd>
           </div>
 
-          <input type="hidden" value={order.id} name="order_id" />
+          <input type="hidden" value={order.id} name="orderId" />
 
           <ButtonSubmit
             values={["Marcar Order Completada", "Completando..."]}
