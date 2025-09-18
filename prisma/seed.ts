@@ -1,6 +1,6 @@
 import { categories } from "./data/category";
 import { products } from "./data/products";
-import { PrismaClient } from "../prisma/generated/prisma";
+import { PrismaClient } from "@prisma/client/extension";
 
 const prisma = new PrismaClient();
 

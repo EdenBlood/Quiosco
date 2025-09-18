@@ -20,6 +20,7 @@ export async function GET() {
 
     return NextResponse.json({ orders });
   } catch (error) {
+    console.log(error);
     return NextResponse.json({
       error: "Error al traer las ordenes",
       status: 500,

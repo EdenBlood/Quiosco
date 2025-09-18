@@ -1,7 +1,10 @@
 "use client";
 
 import { getImagePath } from "@/src/utils";
-import { CldUploadWidget } from "next-cloudinary";
+import {
+  CldUploadWidget,
+  CloudinaryUploadWidgetResults,
+} from "next-cloudinary";
 import Image from "next/image";
 import { useState } from "react";
 import { TbPhotoPlus } from "react-icons/tb";
@@ -16,11 +19,16 @@ export default function ImageUpload({ image }: { image: string | undefined }) {
         options={{
           maxFiles: 1,
         }}
-        onSuccess={(result, { widget }) => {
+        onSuccess={(result: CloudinaryUploadWidgetResults, { widget }) => {
           if (result.event === "success") {
             widget.close();
-            // @ts-ignore
-            setImageUrl(result.info.secure_url);
+            if (
+              typeof result.info === "object" &&
+              result.info !== null &&
+              "secure_url" in result.info
+            ) {
+              setImageUrl((result.info as { secure_url: string }).secure_url);
+            }
           }
         }}
       >
