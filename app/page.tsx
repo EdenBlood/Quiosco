@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  redirect("/admin/orders");
+  redirect("/order/cafe");
 }

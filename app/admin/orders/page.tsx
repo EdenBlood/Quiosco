@@ -15,6 +15,7 @@ export default function AdminOrdersPage() {
     fetcher,
     {
       revalidateOnFocus: false,
+      refreshInterval: 60000,
     },
   );
 
