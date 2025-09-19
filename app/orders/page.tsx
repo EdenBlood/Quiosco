@@ -12,7 +12,7 @@ export default function OrdersPage() {
       .then((data) => data);
 
   const { data, isLoading } = useSWR<OrderWithProducts[]>(url, fetcher, {
-    refreshInterval: 60000,
+    // refreshInterval: 60000, //* Para no comerme la capa gratuita
     revalidateOnFocus: false,
   });
 

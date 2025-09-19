@@ -15,7 +15,7 @@ export default function AdminOrdersPage() {
     fetcher,
     {
       revalidateOnFocus: false,
-      refreshInterval: 60000,
+      // refreshInterval: 60000, //* Para no comerme la capa gratuita.
     },
   );
 
