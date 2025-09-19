@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import EditProductForm from "@/components/admin/EditProductForm";
 import ProductForm from "@/components/admin/ProductForm";
 import GoBackButton from "@/components/ui/GoBackButton";
@@ -24,8 +26,16 @@ export default async function EditProductPage({
 }: {
   params: { id: string };
 }) {
-  const productId = await params.id;
-  const product = await getProductById(+productId);
+  const id = Number(params.id);
+  if (isNaN(id)) notFound();
+  let product;
+
+  try {
+    product = await getProductById(id);
+  } catch (error) {
+    console.log(error);
+    notFound();
+  }
 
   return (
     <>
